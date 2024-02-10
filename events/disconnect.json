@@ -1,0 +1,6 @@
+{
+    "requestContext": {
+        "connectionId": "test_connection_id"
+    },
+    "body": "test_body"
+}
