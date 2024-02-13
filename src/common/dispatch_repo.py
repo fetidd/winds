@@ -1,6 +1,6 @@
 import datetime
 import os
-from common.repo.base_repo import BaseRepo, Item
+from src.common.repo.base_repo import AbstractRepo, Item
 
 class Dispatch(Item):
     line_1: dict[str, str | int] | None = None
@@ -12,6 +12,6 @@ class Dispatch(Item):
     winds_instructor: str | None = None
     timestamp: str = datetime.datetime.now().strftime(r'%Y-%m-%d %H:%M:%S')
 
-class DispatchRepo(BaseRepo):
+class DispatchRepo(AbstractRepo[Dispatch]):
+    TABLE_NAME = os.environ.get('DISPATCH_TABLE', '') # TODO deal with unset env variable
     ITEM_TYPE = Dispatch
-    TABLE_NAME = os.environ.get('DISPATCH_TABLE', 'Dispatches') # TODO deal with unset env variable

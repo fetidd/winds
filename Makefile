@@ -25,6 +25,9 @@ apply-force:
 plan:
 	cd terraform && terraform plan
 
+output:
+	cd terraform && terraform output
+
 deploy: build apply-force
 
 apply-local:
@@ -36,5 +39,14 @@ create-connections-table:
 	aws dynamodb create-table --table-name WebsocketConnections --attribute-definitions AttributeName=connection_id,AttributeType=S --key-schema AttributeName=connection_id,KeyType=HASH --billing-mode PAY_PER_REQUEST --endpoint-url http://localhost:8000
 
 check-connections:
-	aws dynamodb scan --table-name WebsocketConnections --endpoint-url http://localhost:8000
+	aws dynamodb scan --table-name Connections --endpoint-url http://localhost:8000
+
+check-dispatches:
+	aws dynamodb scan --table-name Dispatches --endpoint-url http://localhost:8000
+
+run-server:
+	cd $(PROJECT_DIR)/src/server && python3 -m main
+
+run-client:
+	cd $(PROJECT_DIR)/src/debug-client && python3 -m main
 	

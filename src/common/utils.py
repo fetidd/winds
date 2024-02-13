@@ -12,10 +12,9 @@ def get_client(service: str): # TODO unittest
     environment = os.environ.get("ENVIRONMENT", 'production')
     endpoints = { # TODO this mapping should live somewhere more generic
         'development': {
-            'apigatewaymanagementapi': API_GATEWAY_ENDPOINT,
+            'dynamodb': 'http://localhost:8000'
         },
         'production': {
-            'apigatewaymanagementapi': API_GATEWAY_ENDPOINT,
         }
     }
     kwargs = {}
